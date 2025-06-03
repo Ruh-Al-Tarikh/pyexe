@@ -1,3 +1,0 @@
-Update documentation about building bootloader on AIX; add a note about
-``/opt/freeware/gcc`` from *AIX Toolbox for Open Source Software* not
-honoring the :envvar:`OBJECT_MODE` environment variable.

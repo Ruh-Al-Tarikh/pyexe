@@ -1,1 +1,0 @@
-Remove duplicated check for the ``strip`` utility.
