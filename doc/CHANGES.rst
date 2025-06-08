@@ -15,6 +15,16 @@ Changelog for PyInstaller
 
 .. towncrier release notes start
 
+6.14.1 (2025-06-08)
+-------------------
+
+Hooks
+~~~~~
+
+* Update the ``numpy`` hook for compatibility with NumPy v2.3.0.
+  (:issue:`9162`)
+
+
 6.14.0 (2025-06-03)
 -------------------
 
