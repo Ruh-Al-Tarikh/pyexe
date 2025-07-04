@@ -15,6 +15,29 @@ Changelog for PyInstaller
 
 .. towncrier release notes start
 
+6.14.2 (2025-07-04)
+-------------------
+
+Bugfix
+~~~~~~
+    
+* Exclude ``libsocket.so`` on Solaris as this is specific to the Solaris
+  installation and causes symbol errors otherwise. (:issue:`9171`)
+
+
+Hooks
+~~~~~
+
+* Update ``scipy`` hooks for compatibility with ``scipy`` 1.6.0.
+  (:issue:`9180`)
+
+
+Bootloader build
+~~~~~~~~~~~~~~~~
+
+* Fix compiling bootloader on Solaris 10 systems. (:issue:`9171`)
+
+
 6.14.1 (2025-06-08)
 -------------------
 
