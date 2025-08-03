@@ -15,6 +15,34 @@ Changelog for PyInstaller
 
 .. towncrier release notes start
 
+6.15.0 (2025-08-03)
+-------------------
+
+Features
+~~~~~~~~
+
+* Add Python 3.14 support. (:issue:`9192`)
+
+
+Bugfix
+~~~~~~
+
+* (non-Windows) Ensure that binary dependency analysis creates symbolic
+  links in top-level application directory for shared libraries that are
+  not resolvable during binary dependency analysis but are nevertheless
+  collected due to being explicitly collected by a hook or by the user.
+  (:issue:`9186`)
+* Attempt to mitigate the issue with module exclusion when a top-level
+  package hook excludes its own subpackage to prevent its collection
+  in the absence of any external references; such exclusion rule would
+  prevent collection of modules from such subpackage even when it is
+  supposed to be collected due to an external reference (for example, an
+  explicit import from the user's program). (:issue:`9193`)
+* Fix a bug in module exclusion part of analysis codepath that would cause
+  certain types of relative imports to be misinterpreted and thus fail to
+  exclude them. (:issue:`9197`)
+
+
 6.14.2 (2025-07-04)
 -------------------
 
