@@ -15,6 +15,70 @@ Changelog for PyInstaller
 
 .. towncrier release notes start
 
+6.16.0 (2025-09-13)
+-------------------
+
+Features
+~~~~~~~~
+
+* (POSIX) Adjust the destination directory for collected python's standard
+  extensions, from ``lib-dynload`` to ``python3.x/lib-dynload`` directory,
+  in order to preserve the relative relationship between the extension
+  location and the (grand-parent) shared library directory that is commonly
+  found in POSIX python environments. This is required for compatibility
+  with upcoming Linux builds of ``astral-sh/python-build-standalone#`` that
+  will set relative library paths in extensions via both ``DT_NEEDED`` and
+  ``DT_RPATH``. (:issue:`9212`)
+* Rework the anonymization of the ``co_filename`` attribute in collected
+  code objects - instead of trying to obtain anonymized relative name by
+  removing known path prefixes from the original absolute-path ``co_filename``,
+  we now construct the anonymized relative name directly from the collected
+  module's (or script's) destination name w.r.t. its destination container
+  (i.e., the ``PKG`` archive, the ``PYZ`` archive, or the ``base_library.zip``
+  archive). (:issue:`9226`)
+* Rework the search for python shared library in order to reduce amount of
+  guess-work and better accommodate variations in naming across platforms
+  and due to different build options (e.g., debug build with "d" suffix,
+  free-thread build with "t" suffix, combination of both).
+
+  On Windows, the loaded python DLL is now resolved by calling
+  ``GetModuleFileName``
+  on the handle exposed by :data:`sys.dllhandle`; this applies to python.org
+  Windows
+  builds, Anaconda python on Windows, and MSYS2 python.
+
+  On other platforms, first explicitly verify that shared library is enabled,
+  by checking the value of ``Py_ENABLE_SHARED`` variable exposed by the
+  ``sysconfig`` module. On macOS, also check if .framework bundle is
+  enabled instead, which is implied by a non-empty ``PYTHONFRAMEWORK``
+  variable in ``sysconfig``. If shared library is enabled, use ``INSTSONAME``
+  variable exposed by ``sysconfig`` module as the only source of truth
+  w.r.t. its name. This works even with Debian-packaged python and
+  ``astral-sh/python-build-standalone`` POSIX builds; while they have
+  their ``python`` executable statically linked against python shared
+  library, they seem to properly set these variables.
+
+  In contrast, both Linux and macOS builds of Anaconda python seem to
+  build their interpreter executable and python shared library separately,
+  so the interpreter reports ``Py_ENABLE_SHARED`` variable to be set to ``0``
+  (and ``INSTSONAME`` gives name of the static library). Therefore, for
+  Anaconda python on non-Windows, use the old approach of guessing the
+  library name from the major and minor version and whether free-threading
+  is enabled or not (i.e., the presence of the "t" suffix).
+
+  Adjust the error messages; display the part about rebuilding python with
+  ``--enable-shared`` option only if we detect lack of support for shared
+  library. Similarly, display the part about Debian package only if we
+  are running under Debian or its derivative; and advise to install
+  ``libpython3.X`` package rather than ``python3-dev``. (:issue:`9218`)
+
+
+Hooks
+~~~~~
+
+* Add hook for ``gi.repository.OsmGpsMap``. (:issue:`9209`)
+
+
 6.15.0 (2025-08-03)
 -------------------
 
