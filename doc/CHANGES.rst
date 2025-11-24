@@ -15,6 +15,32 @@ Changelog for PyInstaller
 
 .. towncrier release notes start
 
+6.17.0 (2025-11-24)
+-------------------
+
+Bugfix
+~~~~~~
+
+* Avoid indirect usage of ``pkg_resources`` which is deprecated and scheduled to
+  be removed in 2025-11-30. (:issue:`9149`)
+* Revise the search for Python shared library from :issue:`9218` and
+  the restrictions it imposes: enable the fall-back codepath with
+  guess-based name for all Python builds that report ``Py_ENABLE_SHARED=0``
+  instead of just for Anaconda Python (``compat.is_conda``), but limit
+  the search paths in this fall-back codepath to only ``sys.base_prefix``
+  and the ``lib`` directory under it. (:issue:`9276`)
+* Work around performance issues introduced by superfluous usage of
+  :func:`gc.collect` in ``pefile==2024.8.26``. PyInstaller no longer blocks
+  :installing ``pefile==2024.8.26``. (:issue:`8762`)
+
+
+Hooks
+~~~~~
+
+* Fix finding setuptools's vendored copies of ``backports`` and ``jaraco``
+  packages. (:issue:`9250`)
+
+
 6.16.0 (2025-09-13)
 -------------------
 
