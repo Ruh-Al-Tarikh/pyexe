@@ -15,6 +15,32 @@ Changelog for PyInstaller
 
 .. towncrier release notes start
 
+6.19.0 (2026-02-14)
+-------------------
+
+Bugfix
+~~~~~~
+
+* (Windows) Fix collection of ``numpy`` DLLs when ``numpy`` PyPI wheel is
+  installed using ``uv`` instead of ``pip``. (:issue:`9360`)
+* Extend suppression of missing ``api-ms-win-*.dll`` warnings to Windows Server
+  (formerly Windows 10 and 11). (:issue:`9355`)
+* (Conda) Fix error during initialization of the `conda` hook utility module in
+  Anaconda environments where the metadata for packages with no dependencies
+  omit their *dependencies* key. (:issue:`9345`)
+
+
+Hooks
+~~~~~
+
+* (Windows) Fix installer check in ``numpy`` hook to enable explicit collection
+  of DLLs from ``numpy.libs`` directory when ``numpy`` PyPI wheels are installed
+  through an installer other than ``pip`` - for example, ``uv``. (:issue:`9365`)
+* (Windows) Update the ``pandas`` hook to explicitly collect the DLLs
+  from ``pandas.libs`` directory that has been used in Windows PyPI wheels
+  since ``pandas`` 2.1.0. (:issue:`9365`)
+
+
 6.18.0 (2026-01-13)
 -------------------
 

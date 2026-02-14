@@ -1,3 +1,0 @@
-(Windows) Fix installer check in ``numpy`` hook to enable explicit collection
-of DLLs from ``numpy.libs`` directory when ``numpy`` PyPI wheels are installed
-through an installer other than `pip` - for example, `uv`.
