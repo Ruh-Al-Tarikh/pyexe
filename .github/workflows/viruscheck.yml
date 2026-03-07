@@ -48,14 +48,14 @@ jobs:
 
       - name: Upload bootloaders (arm64)
         if: startsWith(matrix.target-arch, '64bit-arm')
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: bootloaders_${{ matrix.target-arch }}_${{ matrix.compiler }}
           path: PyInstaller\bootloader\Windows-${{ matrix.target-arch }}\*.exe
 
       - name: Upload bootloaders (x86_64)
         if: ${{ !startsWith(matrix.target-arch, '64bit-arm') }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: bootloaders_${{ matrix.target-arch }}_intel_${{ matrix.compiler }}
           path: PyInstaller\bootloader\Windows-${{ matrix.target-arch }}-intel\*.exe
@@ -78,7 +78,7 @@ jobs:
           python waf --target-arch=32bit all
 
       - name: Upload bootloaders
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: bootloaders_32bit_intel_msvc
           path: PyInstaller\bootloader\Windows-32bit-intel\*.exe
