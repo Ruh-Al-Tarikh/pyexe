@@ -10,7 +10,7 @@ incremental==22.10.0
 Jinja2==3.1.4
 MarkupSafe==2.1.5
 Pygments==2.19.2
-pytz==2024.1
+pytz==2026.1.post1
 requests==2.32.3
 snowballstemmer==2.2.0
 Sphinx==7.3.7
