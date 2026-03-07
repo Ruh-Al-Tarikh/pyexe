@@ -1,5 +1,5 @@
 alabaster==0.7.16
-altgraph==0.17.4
+altgraph==0.17.5
 Babel==2.15.0
 charset-normalizer==3.3.2
 click==8.1.7
