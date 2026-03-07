@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # Python dependencies (requirements.txt, pip)
+  - package-ecosystem: "pip"
+    directory: "/" 
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+
+  # GitHub Actions updates
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "github-actions"
