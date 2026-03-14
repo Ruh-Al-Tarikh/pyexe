@@ -22,7 +22,7 @@ sphinxcontrib-devhelp==1.0.6
 sphinxcontrib-htmlhelp==2.1.0
 sphinxcontrib-jquery==4.1
 sphinxcontrib-jsmath==1.0.1
-sphinxcontrib-qthelp==1.0.7
+sphinxcontrib-qthelp==2.0.0
 sphinxcontrib-serializinghtml==2.0.0
 sphinxcontrib-towncrier==0.5.0a0
 sphinx-issues==5.0.1
