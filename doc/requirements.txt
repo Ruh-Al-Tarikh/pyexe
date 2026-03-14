@@ -18,7 +18,7 @@ sphinx-autodoc-typehints==2.3.0
 sphinx-copybutton==0.5.2
 sphinx-inline-tabs==2025.12.21.14
 sphinxcontrib-applehelp==1.0.8
-sphinxcontrib-devhelp==1.0.6
+sphinxcontrib-devhelp==2.0.0
 sphinxcontrib-htmlhelp==2.1.0
 sphinxcontrib-jquery==4.1
 sphinxcontrib-jsmath==1.0.1
